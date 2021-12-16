@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :enterprises, only: [:index, :create, :update]
+    resources :enterprises, only: [:index, :create, :update] 
 
     resources :candidates, only: [:index, :create, :update]
   end

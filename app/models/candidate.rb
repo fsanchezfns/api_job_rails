@@ -7,6 +7,6 @@ class Candidate < ApplicationRecord
   validates :user, uniqueness: true
   
   def json
-    {name: name, lastname: lastname, birth_date: birth_date, observations: observations}
+    {id: id, name: name, lastname: lastname, birth_date: birth_date, observations: observations}
   end
 end

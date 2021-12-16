@@ -5,6 +5,6 @@ class Enterprise < ApplicationRecord
   validates :user, uniqueness: true
 
   def json
-    { name: name, nationality: nationality}
+    { id: id, name: name, nationality: nationality}
   end
 end

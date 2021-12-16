@@ -26,7 +26,21 @@ class V1::CandidatesController < ApplicationController
     render(json: response, status: status)
   end
 
-  def update; end
+  
+  #leer comentario en enterprises update porque es identico
+  def update
+    if !current_candidate?
+      response, status = format_error('user not register with candite')
+    elsif !(@current_candidate.id.to_s == params[:id])
+      response, status = format_error('not found candidate')
+    elsif @current_candidate.update(candidate_params)
+      response, status = format_success(@current_candidate.json)
+    else
+      response, status = format_error(@current_candidate.errors.full_messages)
+    end
+    render(json: response, status: status)
+  end
+
 
   private
 
