@@ -25,24 +25,36 @@ rails s
 ## Models 📋
 * User
 ```
+id: integer
 username: string
 password: string
 token: string
 ```
 * Enterprise
 ```
+id: integer
 name: string
 nacionality: string
 ```
 
 * Candidate
 ```
+id: integer
 name: string
 lastname: string
 birth_date: fate
 observations: string
 ```
 
+* Jobs
+```
+id: integer
+name: string
+description: string
+requirements: string
+time: string
+enable: boolean
+```
 
 # Endpoints  📄 
 
@@ -336,4 +348,134 @@ Example curl
 curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -H "Content-Type:application/json" -X PUT http://127.0.0.1:3000/v1/candidates/2 -d '{"name":"Leo","lastname":"sutter","bith_date":"10/10/21","observations":"soy alumno de la utn"}'
 ```
 
+#modificar aca
 
+#
+# JOB
+###  Index Job
+* _get v1/jobs_  
+ 
+``` 
+Authorization: bearer token
+```
+
+Response sucess
+```
+HTTP/1.1 200
+
+[{
+   "id": "integer"
+   "name": "string"
+   "description": "string"
+   "requirements": "string"
+    "time": "string"
+    "enable": "boolean"
+}]
+
+```
+
+Example Curl
+```
+url -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/jobs
+```
+
+###  Show Job
+* _get v1/jobs/:id_  
+ 
+``` 
+Authorization: bearer token
+```
+
+Response sucess
+```
+HTTP/1.1 200
+
+{
+   "id": "integer"
+   "name": "string"
+   "description": "string"
+   "requirements": "string"
+    "time": "string"
+    "enable": "boolean"
+}
+
+```
+
+Example Curl
+```
+url -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/jobs/1
+```
+
+###  Create Job
+* _POST v1/jobs_  
+ 
+``` 
+Authorization: bearer token
+```
+
+Body
+```
+{
+   "name": "string"
+   "description": "string"
+   "requirements": "string"
+   "time": "string"
+   "enable": "boolean"
+}
+```
+
+Response sucess
+```
+HTTP/1.1 200
+{
+   "id": "integer"
+   "name": "string"
+   "description": "string"
+   "requirements": "string"
+    "time": "string"
+    "enable": "boolean"
+}
+
+```
+
+Example Curl
+```
+curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/jobs -d '{"name":"DevelomentJunior","description":"Desarrollador junior de rails para una propuesta interesente de trabajo. Sueldo a discutir","requirements":"estudiante de Ing en sistemas o carreras a fines", "time":"parttime"}'
+```
+# 
+
+###  Update Job
+* _PUT v1/job/:id_  
+ 
+``` 
+Authorization: bearer token
+```
+
+Body
+```
+{
+   "name": "string"
+   "description": "string"
+   "requirements": "string"
+   "time": "string"
+   "enable": "boolean"
+}
+```
+Response sucess
+```
+HTTP/1.1 200
+{
+   "id": "integer"
+   "name": "string"
+   "description": "string"
+   "requirements": "string"
+    "time": "string"
+    "enable": "boolean"
+}
+
+```
+Example curl 
+
+```
+curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -H "Content-Type:application/json" -X PUT http://127.0.0.1:3000/v1/jobs/1 -d '{"name":"DevelomentJunior","description":"Desarrollador junior de rails para una propuesta interesente de trabajo. Sueldo en dolares","requirements":"estudiante de Ing en sistemas o carreras a fines", "time":"fulltime"}'
+```

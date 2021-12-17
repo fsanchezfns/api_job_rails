@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::API
+  def check_enterprise
+    if check_token && !current_enterprise?
+      response, status = format_error('user not enterprise')
+      render(json: response, status: status)
+    end
+  end
+  
   def check_token
     if current_user.present?
       true

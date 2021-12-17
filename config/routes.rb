@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     end
 
     resources :enterprises, only: [:index, :create, :update] 
-
     resources :candidates, only: [:index, :create, :update]
+    resources :jobs, only: [:show, :index, :create, :update]
+
   end
 end
