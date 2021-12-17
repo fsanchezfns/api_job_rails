@@ -89,7 +89,7 @@ HTTP/1.1 400
 
 
 
-# USER
+# USER📌
 ###  Create User
 * _POST v1/users_  
  
@@ -157,7 +157,7 @@ Example curl
 curl -i -H "Authorization:bearer xFWHKBZJrsAqb9C9CSwKrA" -X GET http://127.0.0.1:3000/v1/users/logout
 ```
 #
-## ENTERPRISE
+## ENTERPRISE📌
 ###  Index Enterprise
 * _get v1/enterprises_  
  
@@ -245,7 +245,7 @@ curl -i -H "Authorization:bearer lka-YmS4T3b38XijU_NCLw" -H "Content-Type:applic
 
 
 #
-## CANDIDATE
+## CANDIDATE📌
 ###  Index Candidate
 * _get v1/candidates_  
  
@@ -345,7 +345,7 @@ curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -H "Content-Type:applic
 ```
 
 #
-## JOB
+## JOB📌
 ###  Index Job
 * _get v1/jobs_  
 for enterprises and candidates 
@@ -473,7 +473,7 @@ curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -H "Content-Type:applic
 ```
 #
 
-## Subscriptions
+## Subscriptions📌
 ###  Index Subscriptions
 * _get v1/subscriptions_  
 for candidate
@@ -690,4 +690,46 @@ HTTP/1.1 200
 Example curl
 ```
 curl -i -H "Authorization:bearer 4Vjk7Vt5Jg0nc11KI5sbbA" -H "Content-Type:application/json" -X PUT http://127.0.0.1:3000/v1/jobs/1/subscriptions/1 -d '{"state":"contracted"}'
+```
+
+
+#
+## Pruebas ⚙️
+_Tomando como punto de partida el db:seed_
+
+* login con el usuario foo (enterprise)
+```
+curl -i -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/users/login -d '{"username":"foo","password":"123456789"}'
+```
+
+* crear un nuevo trabajo
+```
+curl -i -H "Authorization:bearer Tm25t2cA9pYWUAQzKtbfEw" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/jobs -d '{"name":"DevelomentJuniorPRUEBA","description":"Desarrollador junior de rails para una propuesta interesente de trabajo. Sueldo a discutir","requirements":"estudiante de Ing en sistemas o carreras a fines", "time":"parttime"}'
+```
+
+
+
+* login con el usuario foobar (candidate)
+```
+curl -i -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/users/login -d '{"username":"foobar","password":"123456789"}'
+```
+
+* Buscar los trabajos activos 
+```
+curl -i -H "Authorization:bearer 4ofdqlxuao5WDjpDErjBEQ" -X GET http://127.0.0.1:3000/v1/jobs
+```
+
+* Subcribir para el trabajo creado anteriormente
+```
+curl -i -H "Authorization:bearer 4ofdqlxuao5WDjpDErjBEQ" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/subscriptions -d '{"job_id":"3"}'
+```
+
+* Con el usuario foo voy a revisar las subcripciones del trabajo
+```
+curl -i -H "Authorization:bearer Tm25t2cA9pYWUAQzKtbfEw" -X GET http://127.0.0.1:3000/v1/jobs/3/subscriptions
+```
+
+* Contrato a foobar
+```
+curl -i -H "Authorization:bearer Tm25t2cA9pYWUAQzKtbfEw" -H "Content-Type:application/json" -X PUT http://127.0.0.1:3000/v1/jobs/3/subscriptions/2 -d '{"state":"contracted"}'
 ```
