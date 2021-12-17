@@ -136,7 +136,7 @@ HTTP/1.1 200
 
 Example curl
 ```
-curl -i -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/users/login -d '{"username":"franco","password":"123456789"}'
+curl -i -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/users/login -d '{"username":"csirfranco","password":"123456789"}'
 ```
 ## Logout User
 * _GET v1/users/logout_
@@ -177,7 +177,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -H "Content-Type:application/json" -X GET http://127.0.0.1:3000/v1/enterprises
+curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw"  -X GET http://127.0.0.1:3000/v1/enterprises
 ```
 
 ###  Create Enterprise
@@ -209,7 +209,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-url -i -H "Authorization:bearer lka-YmS4T3b38XijU_NCLw" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/enterprises -d '{"name":"w3SchoolS.A","nationality":"Argentina"}'
+curl -i -H "Authorization:bearer lka-YmS4T3b38XijU_NCLw" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/enterprises -d '{"name":"w3SchoolS.A","nationality":"Argentina"}'
 ```
 
 ###  Update Enterprise
@@ -269,7 +269,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -H "Content-Type:application/json" -X GET http://127.0.0.1:3000/v1/cantidadates
+curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -X GET http://127.0.0.1:3000/v1/candidates
 ```
 ###  Create Candidate
 * _POST v1/candidates_  
@@ -305,7 +305,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/candidates -d '{"name":"Lionel","lasname":"Messi","birth_date":09/09/1995}'
+curl -i -H "Authorization:bearer SP_X1tSH4KKEUE72xFqHSw" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/candidates -d '{"name":"Lionel","lastname":"Messi","birth_date":"09/09/1995"}'
 ```
 
 ###  Update Candidate
@@ -370,7 +370,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-url -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/jobs
+curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/jobs
 ```
 
 ###  Show Job
@@ -397,7 +397,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-url -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/jobs/1
+curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/jobs/1
 ```
 
 ###  Create Job
@@ -504,7 +504,7 @@ HTTP/1.1 200
 
 Example curl
 ```
-url -i -H "Authorization:bearer EcXrGzBczIjMkFr6Hq-ARA" -X GET http://127.0.0.1:3000/v1/subscriptions
+curl -i -H "Authorization:bearer EcXrGzBczIjMkFr6Hq-ARA" -X GET http://127.0.0.1:3000/v1/subscriptions
 ```
 
 
@@ -536,7 +536,7 @@ HTTP/1.1 200
 
 Example Curl
 ```
-url -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/subscriptions/1
+curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:3000/v1/subscriptions/1
 ```
 
 
