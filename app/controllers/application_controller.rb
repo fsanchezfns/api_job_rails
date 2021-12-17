@@ -1,4 +1,13 @@
 class ApplicationController < ActionController::API
+
+  def check_candidate
+    if check_token && !current_candidate?
+      response, status = format_error('user not candidate')
+      render(json: response, status: status)
+    end
+  end
+
+
   def check_enterprise
     if check_token && !current_enterprise?
       response, status = format_error('user not enterprise')

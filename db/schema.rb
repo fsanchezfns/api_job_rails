@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_001256) do
+ActiveRecord::Schema.define(version: 2021_12_17_024927) do
 
   create_table "candidates", force: :cascade do |t|
     t.integer "user_id"
@@ -38,10 +38,20 @@ ActiveRecord::Schema.define(version: 2021_12_17_001256) do
     t.string "description"
     t.string "requirements"
     t.string "time"
-    t.boolean "enable"
+    t.boolean "enable", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["enterprise_id"], name: "index_jobs_on_enterprise_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "candidate_id"
+    t.string "state"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["candidate_id"], name: "index_subscriptions_on_candidate_id"
+    t.index ["job_id"], name: "index_subscriptions_on_job_id"
   end
 
   create_table "users", force: :cascade do |t|

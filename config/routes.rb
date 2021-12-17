@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     resources :enterprises, only: [:index, :create, :update] 
     resources :candidates, only: [:index, :create, :update]
     resources :jobs, only: [:show, :index, :create, :update]
-
+    resources :subscriptions, only: [:show, :index, :create]
   end
 end

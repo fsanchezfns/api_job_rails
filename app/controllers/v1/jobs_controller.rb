@@ -1,9 +1,23 @@
 class V1::JobsController < ApplicationController
-  before_action :check_enterprise
+  before_action :check_enterprise, except: [:index]
+  before_action :check_token, only: [:index]
   before_action :find_job, only: %i[show update]
 
+  # #para enterprises listar los jobs
+  # #para candidate  listar los jobs enable.true
   def index
-    render(json: @current_enterprise.jobs)
+    if user_registered?
+
+      if current_enterprise?
+        response, status = format_success(@current_enterprise.jobs)
+      else
+        response, status = format_success(Job.where(enable: true).map(&:json))
+      end
+    else
+      response, status = format_error('user without enterprise and without candidate')
+    end
+
+    render(json: response, status: status)
   end
 
   def show

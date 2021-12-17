@@ -1,5 +1,6 @@
 class Job < ApplicationRecord
   belongs_to :enterprise
+  has_many :subscriptions
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :description, :requirements, presence: true, length: { in: 20..600 }

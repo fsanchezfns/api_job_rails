@@ -1,5 +1,6 @@
 class Candidate < ApplicationRecord
   belongs_to :user
+  has_many :subscriptions
 
   validates :name, :lastname, presence: true, length: { maximum: 40 }
   #validates :birth_date, presence: true
