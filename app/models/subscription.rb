@@ -10,6 +10,10 @@ class Subscription < ApplicationRecord
 
 
   def json
-    { job: Job.find_by(id:job_id).json, state: state }
+    { id: id, state: state, job: Job.find_by(id:job_id).json}
+  end
+
+  def jsonfull
+    { id: id, state: state, job: Job.find_by(id:job_id).json, candidate: Candidate.find_by(id:candidate_id)}
   end
 end

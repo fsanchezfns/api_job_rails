@@ -1,7 +1,12 @@
 # API - JOB 
 
-_description de la api_
+_api rest sobre una bolsa de trabajo_
 
+* Registarse como compañía o candidato.
+* Publicar un aviso de trabajo.
+* Los candidatos pueden aplicar a ese trabajo.
+* Administrar candidatos para los trabajos seleccionados: Interesa,
+Rechazado,Contratado
 
 #
 ## Configurations 🔧
@@ -48,7 +53,7 @@ observations: string
 idUser: integer (1-->1)
 ```
 
-* Jobs
+* Job
 ```
 id: integer
 name: string
@@ -58,7 +63,7 @@ time: string
 enable: boolean
 idEnterprise: interger (N-->1)
 ```
-* Subcriptions
+* Subcription
 ```
 id: integer
 state: string
@@ -471,7 +476,7 @@ curl -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -H "Content-Type:applic
 ## Subscriptions
 ###  Index Subscriptions
 * _get v1/subscriptions_  
- 
+for candidate
 ``` 
 Authorization: bearer token
 ```
@@ -482,14 +487,16 @@ HTTP/1.1 200
 
 
 [{
+    "id": integer
+    "state": "string",
     "job": {
         "name": "string",
         "description": "string",
         "requirements": "string",
         "time": "string",
         "enable": "boolean"
-    },
-    "state": "string"
+    }
+    
 }]
 
 
@@ -503,7 +510,7 @@ url -i -H "Authorization:bearer EcXrGzBczIjMkFr6Hq-ARA" -X GET http://127.0.0.1:
 
 ###  Show Subscriptions
 * _get v1/subscriptions/:id_  
- 
+for candidate
 ``` 
 Authorization: bearer token
 ```
@@ -513,14 +520,16 @@ Response sucess
 HTTP/1.1 200
 
 {
+    "id": integer
+    "state": "string",
     "job": {
         "name": "string",
         "description": "string",
         "requirements": "string",
         "time": "string",
         "enable": "boolean"
-    },
-    "state": "string"
+    }
+    
 }
 
 ```
@@ -533,7 +542,7 @@ url -i -H "Authorization:bearer jVrQH9QxzBD_jv4CeZDQIg" -X GET http://127.0.0.1:
 
 ###  Create Subcriptions
 * _POST v1/subscriptions_  
- 
+for candidate 
 ``` 
 Authorization: bearer token
 ```
@@ -550,20 +559,135 @@ Response sucess
 HTTP/1.1 200
 
 {
+    "id": integer
+    "state": "string",
     "job": {
         "name": "string",
         "description": "string",
         "requirements": "string",
         "time": "string",
         "enable": "boolean"
-    },
-    "state": "string"
+    }
+    
 }
-
 ```
 
 Example Curl
 
 ```
 curl -i -H "Authorization:bearer cXrGzBczIjMkFr6Hq-ARA" -H "Content-Type:application/json" -X POST http://127.0.0.1:3000/v1/subscriptions -d '{"job_id":"1"}'
+```
+
+
+
+###  Index Jobs Subcriptions
+* GET v1/jobs/:id/subscriptions_  
+for enterprise 
+``` 
+Authorization: bearer token
+```
+
+Response sucess
+```
+HTTP/1.1 200
+
+[{
+    "id": integer
+    "state": "string",
+    "job": {
+        "name": "string",
+        "description": "string",
+        "requirements": "string",
+        "time": "string",
+        "enable": "boolean"
+    }
+    "candidate":{
+
+        "name":"string",
+        "lastname":"string",
+        "birth_date":"date",
+        "observations":"string"
+    } 
+}]
+```
+
+Example Curl
+```
+curl -i -H "Authorization:bearer 4Vjk7Vt5Jg0nc11KI5sbbA" -X GET http://127.0.0.1:3000/v1/jobs/1/subscriptions
+```
+
+###  Show Jobs Subcription
+* GET v1/jobs/:id/subscriptions/:id_  
+for enterprise 
+``` 
+Authorization: bearer token
+```
+
+Response sucess
+```
+HTTP/1.1 200
+
+{
+    "id": integer
+    "state": "string",
+    "job": {
+        "name": "string",
+        "description": "string",
+        "requirements": "string",
+        "time": "string",
+        "enable": "boolean"
+    }
+    "candidate":{
+
+        "name":"string",
+        "lastname":"string",
+        "birth_date":"date",
+        "observations":"string"
+    } 
+}
+```
+
+Example Curl
+```
+curl -i -H "Authorization:bearer 4Vjk7Vt5Jg0nc11KI5sbbA" -X GET http://127.0.0.1:3000/v1/jobs/1/subscriptions/1
+```
+
+
+###  Update Jobs Subcription
+* PUT v1/jobs/:id/subscriptions/:id_  
+for enterprise 
+``` 
+Authorization: bearer token
+```
+Body 
+```
+{"state":string}
+```
+
+Response sucess
+```
+HTTP/1.1 200
+
+{
+    "id": integer
+    "state": "string",
+    "job": {
+        "name": "string",
+        "description": "string",
+        "requirements": "string",
+        "time": "string",
+        "enable": "boolean"
+    }
+    "candidate":{
+
+        "name":"string",
+        "lastname":"string",
+        "birth_date":"date",
+        "observations":"string"
+    } 
+}
+```
+Example curl
+```
+curl -i -H "Authorization:bearer 4Vjk7Vt5Jg0nc11KI5sbbA" -H "Content-Type:application/json" -X PUT http://127.0.0.1:3000/v1/jobs/1/subscriptions/1 -d '{"state":"contracted"}'
 ```

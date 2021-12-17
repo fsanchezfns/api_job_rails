@@ -7,9 +7,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :enterprises, only: [:index, :create, :update] 
-    resources :candidates, only: [:index, :create, :update]
-    resources :jobs, only: [:show, :index, :create, :update]
-    resources :subscriptions, only: [:show, :index, :create]
+    resources :enterprises, only: %i[index create update]
+    resources :candidates, only: %i[index create update]
+    resources :jobs, only: %i[show index create update] do
+      member do
+        get :subscriptions
+      end
+      get 'subscriptions/:id', to: 'jobs#showsubscriptions'
+      put 'subscriptions/:id', to: 'jobs#updatesubscriptions'
+    end
+
+    resources :subscriptions, only: %i[show index create]
   end
 end
